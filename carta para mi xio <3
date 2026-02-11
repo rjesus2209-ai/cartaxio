@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> 💌 Carta para mi Xio ❤️ </title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(#5b0f1b,#2b0208);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Playfair Display', serif;
+  color:white;
+  overflow-x:hidden;
+  padding:15px;
+}
+
+.container{
+  text-align:center;
+  width:100%;
+  max-width:900px;
+}
+
+#openBtn{
+  padding:16px 30px;
+  font-size:clamp(18px, 4vw, 22px);
+  border:none;
+  border-radius:30px;
+  background:#a83246;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255,255,255,0.3);
+}
+
+#controls{
+  display:none;
+  position:fixed;
+  bottom:20px;
+  right:15px;
+  flex-direction:column;
+  gap:10px;
+  z-index:1000;
+}
+
+#controls.show{
+  display:flex;
+}
+
+.ctrl{
+  padding:10px 15px;
+  border:none;
+  border-radius:20px;
+  background:#a83246;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+}
+
+#carta{
+  display:none;
+  background:rgba(255,255,255,0.15);
+  padding:clamp(20px, 5vw, 35px);
+  border-radius:14px;
+  width:100%;
+  max-width:750px;
+  backdrop-filter: blur(6px);
+  box-shadow:0 0 25px rgba(0,0,0,0.5);
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.95);}
+  to{opacity:1; transform:scale(1);}
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:clamp(32px, 8vw, 48px);
+  margin-bottom:20px;
+}
+
+p{
+  line-height:1.7;
+  font-size:clamp(15px, 4vw, 17px);
+  color:#f7e9e9;
+}
+
+.dove{
+  position:absolute;
+  left:-60px;
+  font-size:22px;
+  opacity:0.7;
+  animation: fly 6s linear infinite;
+}
+
+@keyframes fly{
+  from{left:-60px;}
+  to{left:110%;}
+}
+
+/* Ajustes extra para pantallas muy pequeñas */
+@media (max-width:480px){
+  body{
+    align-items:flex-start;
+    padding-top:40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="cancion.mp3"></audio>
+
+<div class="container">
+  <button id="openBtn" onclick="abrirCarta()">💌 ABRIR CARTA 💌</button>
+
+  <div id="carta">
+    <h1>Para mi amor</h1>
+    <p>Mi amor hermoso,</p>
+    <p>Hoy quiero aprovechar este día especial para recordarte algo que nunca debe olvidarse: tú eres una de las mejores cosas que me ha pasado en la vida. Aunque estemos en países distintos, mi corazón siempre encuentra la manera de estar contigo.</p>
+    <p>Nuestra historia no es la más fácil, pero sí es una de las más reales. Hemos aprendido a querernos con paciencia, con fe y con esperanza. Cada mensaje tuyo, cada llamada, cada “te amo” a la distancia me confirma que lo nuestro vale la pena.</p>
+    <p>No sabes cuánto sueño con el día en que por fin pueda verte, mirarte a los ojos, abrazarte sin reloj ni pantalla de por medio. Siento que ese momento está cada vez más cerca, y eso me llena el alma de ilusión.</p>
+    <p>Gracias por quedarte, por creer en nosotros, por aguantar los días difíciles y por hacerme sentir amado incluso en la distancia. Yo no quiero solo un rato contigo, yo quiero caminar la vida a tu lado, crecer juntos y construir algo bonito contigo.</p>
+    <p>Hoy, 14 de febrero, quiero decirte con todo mi corazón que te amo, que te elijo y que no veo la hora de encontrarnos para demostrarte en persona todo lo que siento.</p>
+    <p>Ojalá la vida siempre me permita tenerte a mi lado, porque tú eres mi amor, mi calma y mi razón para seguir soñando.</p>
+    <p><strong>Feliz San Valentín, mi amor.</strong><br>Con todo mi corazón,<br>Jesús ❤️</p>
+  </div>
+
+  <div id="controls">
+    <button class="ctrl" onclick="playMusic()">▶️ Reproducir</button>
+    <button class="ctrl" onclick="pauseMusic()">⏸️ Pausar</button>
+  </div>
+</div>
+
+<script>
+function abrirCarta(){
+  document.getElementById("openBtn").style.display="none";
+  document.getElementById("carta").style.display="block";
+  document.getElementById("controls").classList.add("show");
+  crearPalomas();
+}
+
+function playMusic(){
+  document.getElementById("music").play();
+}
+function pauseMusic(){
+  document.getElementById("music").pause();
+}
+
+function crearPalomas(){
+  for(let i=0;i<6;i++){
+    let d=document.createElement("div");
+    d.className="dove";
+    d.innerHTML="🕊️";
+    d.style.top=(Math.random()*80+10)+"%";
+    d.style.animationDelay=(Math.random()*3)+"s";
+    document.body.appendChild(d);
+  }
+}
+</script>
+
+</body>
+</html>
